@@ -1,14 +1,11 @@
-gemini
-=======
+# gemini
 
 Gemini is the utility for regression testing of web pages appearance.
 
 Unlike other similar tools, tests not the whole pages, but
-only specified blocks. This makes such tests more reliable and
-more responsive to the changes of rest of webpage.
+only specified blocks. This makes such tests more reliable and more responsive to the changes of rest of web page.
 
-Tool is created at [Yandex](http://www.yandex.com/) and will be especially
-useful to UI libraries developers.
+Tool is created at [Yandex](http://www.yandex.com/) and will be especially useful to UI libraries developers.
 
 ## Dependencies
 
@@ -68,21 +65,10 @@ on selenium grid.
 
 * `screenshotsDir` - directory to save reference screenshots to. Specified
 relatively to config file directory. `gemini/screens` by default.
-* `capabilities` - additional selenium capabilities to use for all browsers:
-
-  ```yaml
-  capabilities:
-    option1: value,
-    option2: value
-  ```
-  
-  It is possible to set any capability, except `browserName` and `version` (use
-  `browsers` option instead) and `takesScreenshot` (always set to `true`
-  automatically);
 
 ## Writing tests
 
-For each block of website you need to test you need to write one or more *test suites*. 
+For each block of website you need to test you need to write one or more *test suites*.
 Suite consists of few *states* that needs to be verified. For each state you need to
 specify *action sequence* that gets block to this state.
 
@@ -119,16 +105,14 @@ affects screenshots filenames.
 * `callback(suite)` - callback, used to set up the suite. Receives a suite
 builder instance (described below).
 
-### Suite builder methods:
+### Suite builder methods
 
 All method are chainable:
 
 * `setUrl(url)` - specifies address of web page to take screenshots from.
   URL is relative to `rootUrl` config field.
-* `setCaptureElements('selector1', 'selector2', ...})` - specifies css
-  selectors of the elements that will be used to determine a region of webpage 
-  to capture.
-  
+* `setCaptureElements('selector1', 'selector2', ...})` - specifies css selectors of the elements that will be used to determine a region of webpage to capture.
+
   Capture region determined by minimum bounding rect for all
   of theese elements plus their `box-shadow` size.
 
@@ -140,8 +124,7 @@ All method are chainable:
 
   All tests in suite will fail if any of the elements will not be found.
 
-* `skip([browser])` - skip all tests and nested suites for all browser,
-  some specified browser or specified version of a browser:
+* `skip([browser])` - skip all tests and nested suites for all browsers, some specified browsers or specified version of a browser:
 
   - `skip()` - skips tests and nested suites for all browsers;
   - `skip(browserName)` or `skip({name: browserName})` - skips tests for all
@@ -262,7 +245,7 @@ list `element` can be either CSS selector, or result of a `find` call:
 
 * `click(element)` - mouse click at the center of the element.
 * `doubleClick(element)` - mouse double click at the center of the element.
-* `mouseDown(element, [button])` - press a mouse button at the center of the element. 
+* `mouseDown(element, [button])` - press a mouse button at the center of the element.
   Possible button values are: 0 - left, 1 - middle, 2 - right. By default, left button is used.
 * `mouseUp(element)` - release previously pressed mouse button.
 * `mouseMove(element, [offset])` - move mouse to the given element. Offset is specified relatively
@@ -281,7 +264,7 @@ list `element` can be either CSS selector, or result of a `find` call:
 
 * `wait(milliseconds)` - wait for specified amount of time before next action. If it is the last action in
 sequence, delay the screenshot for this amount of time.
-* `sendKeys([element], keys)` - send a series of keyboard strokes to the speciefied element or
+* `sendKeys([element], keys)` - send a series of keyboard strokes to the specified element or
    currently active element on a page.
 
    You can send a special key using one of the provided constants, i.e:
@@ -331,7 +314,7 @@ gemini test [paths to suites]
 
 Paths and configuration are treated the same way as in `gather` command.
 
-Each state with appearance different from reference image will be treated 
+Each state with appearance different from reference image will be treated
 as the failed test.
 
 By default, you'll see only names of the states. To get more information
